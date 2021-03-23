@@ -387,8 +387,8 @@ class MemberListState extends State<MemberList> {
                                             MaterialPageRoute(
                                                 builder: (context) {
                                           return MemberSingle(
-                                            name: memberAdmin.user[i].name,
-                                            id: memberAdmin.user[i].id,
+                                            name: memberPenjual.user[i].name,
+                                            id: memberPenjual.user[i].id,
                                           );
                                           ;
                                         }));
@@ -518,8 +518,8 @@ class MemberListState extends State<MemberList> {
                                             MaterialPageRoute(
                                                 builder: (context) {
                                           return MemberSingle(
-                                            name: memberAdmin.user[i].name,
-                                            id: memberAdmin.user[i].id,
+                                            name: memberAnggota.user[i].name,
+                                            id: memberAnggota.user[i].id,
                                           );
                                           ;
                                         }));

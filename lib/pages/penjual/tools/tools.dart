@@ -69,7 +69,6 @@ class _PenjualToolsPageState extends State<PenjualToolsPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        
                         SizedBox(
                           height: displayHeight(context) * 0.25,
                           width: displayHeight(context) * 0.2,
@@ -117,6 +116,7 @@ class _PenjualToolsPageState extends State<PenjualToolsPage> {
                                 ),
                               )),
                         ),
+                        
                         
                       ],
                     )

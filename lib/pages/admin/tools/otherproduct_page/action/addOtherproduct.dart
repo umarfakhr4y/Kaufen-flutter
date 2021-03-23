@@ -78,7 +78,8 @@ class AddOtherproductState extends State<AddOtherproduct> {
     setState(() {
       _loading = true;
     });
-    makeTitipan( nameBarang.text, stock.text, _jenisFix, harga.text, _userId, _image)
+    makeTitipan(
+            nameBarang.text, stock.text, _jenisFix, harga.text, _userId, _image)
         .then((value) {
       if (value == true) {
         setState(() {
@@ -331,7 +332,7 @@ class AddOtherproductState extends State<AddOtherproduct> {
                                             fontWeight: FontWeight.normal,
                                           ))
                                       : Text(
-                                          'Product Image',
+                                          'Image Has been Select',
                                           textDirection: TextDirection.ltr,
                                           style: TextStyle(
                                             color: Colors.white,
@@ -440,7 +441,29 @@ class AddOtherproductState extends State<AddOtherproduct> {
                                               new BorderRadius.circular(20.0)),
                                       onPressed: () {
                                         if (_formKey.currentState.validate()) {
-                                          buatTitipan();
+                                          if (_image == null) {
+                                            Alert(
+                                              context: context,
+                                              type: AlertType.error,
+                                              title: "Failed",
+                                              desc: "Please Input Image",
+                                              buttons: [
+                                                DialogButton(
+                                                  child: Text(
+                                                    "Ok",
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 20),
+                                                  ),
+                                                  onPressed: () =>
+                                                      Navigator.pop(context),
+                                                  width: 120,
+                                                )
+                                              ],
+                                            ).show();
+                                          } else {
+                                            buatTitipan();
+                                          }
                                         }
                                       },
                                     ),

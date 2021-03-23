@@ -8,6 +8,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'product_viewmodel/product_list.dart';
 import 'package:intl/intl.dart' as intl;
+import 'counter.dart';
 
 import '../../../../../size_helper.dart';
 
@@ -68,7 +69,7 @@ class _ProductkoperasiScreenState extends State<ProductkoperasiScreen> {
     setState(() {
       _loading = true;
     });
-    editKoperasiProduct(count, widget.stock, widget.id).then((value) {
+    editKoperasiProduct(_count, widget.stock, widget.id).then((value) {
       setState(() {
         if (value == true) {
           setState(() {
@@ -78,7 +79,7 @@ class _ProductkoperasiScreenState extends State<ProductkoperasiScreen> {
             context: context,
             type: AlertType.success,
             title: "Success",
-            desc: "Success Editing data",
+            desc: "Success Buying ${widget.nameBarang}",
             buttons: [
               DialogButton(
                 child: Text(
@@ -105,7 +106,7 @@ class _ProductkoperasiScreenState extends State<ProductkoperasiScreen> {
             context: context,
             type: AlertType.error,
             title: "Failed",
-            desc: "Failed Editing Data",
+            desc: "Failed Buying ${widget.nameBarang}",
             buttons: [
               DialogButton(
                 child: Text(
@@ -122,275 +123,211 @@ class _ProductkoperasiScreenState extends State<ProductkoperasiScreen> {
     });
   }
 
+  int _count = 1;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: AppBar(title: Text(loadedProduct.title),),
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverAppBar(
-            expandedHeight: displayHeight(context) * 0.36,
-            pinned: true,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Container(
-                  // width: displayHeight(context) * 0.1,
-                  // height: displayHeight(context) * 0.05,
-                  decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  child: Padding(
-                    padding: EdgeInsets.all(10),
-                    child: Text(widget.nameBarang),
-                  )),
-              background: Hero(
-                tag: 1,
-                child: Image.network(
-                  'http://coperationv2.herokuapp.com/img/${widget.image}',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-          ),
-          SliverList(
-            delegate: SliverChildListDelegate([
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Column(
-                    children: [
-                      Container(
-                          height: displayHeight(context) * 0.07,
-                          width: displayHeight(context) * 0.2,
-                          decoration: BoxDecoration(
-                              color: Colors.red,
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(15),
-                                topLeft: Radius.circular(15),
-                              )),
-                          child: Center(
-                            child: Text(
-                              currencyFormatter.format(int.parse(widget.harga)),
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 20),
-                              textAlign: TextAlign.center,
-                            ),
-                          )),
-                      Container(
-                          height: displayHeight(context) * 0.04,
-                          width: displayHeight(context) * 0.2,
-                          decoration: BoxDecoration(
-                              color: Colors.red,
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(15),
-                                topLeft: Radius.circular(15),
-                              )),
-                          child: Center(
-                            child: Text(
-                              'Stock: ${widget.stock}',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 20),
-                              textAlign: TextAlign.center,
-                            ),
-                          )),
-                    ],
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.blue[100],
+        body: Column(
+          children: <Widget>[
+            Expanded(
+              child: Stack(
+                children: <Widget>[
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        IconButton(
+                          icon: Icon(
+                            Icons.arrow_back,
+                          ),
+                          onPressed: () => Navigator.pop(context),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Positioned.fill(
+                    child: Container(
+                      width: double.infinity,
+                      alignment: Alignment.center,
+                      child: Hero(
+                        tag: '1',
+                        child: Image.network(
+                          "http://coperationv2.herokuapp.com/img/${widget.image}",
+                          width: MediaQuery.of(context).size.width * .7,
+                        ),
+                      ),
+                    ),
                   )
                 ],
               ),
-              SizedBox(
-                height: displayHeight(context) * 0.01,
-              ),
-              Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Text(
-                    "",
-                    textAlign: TextAlign.center,
-                    softWrap: true,
-                  )),
-              Container(
-                height: displayHeight(context) * 0.4,
-                child: ListView(children: <Widget>[]),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: SizedBox(
-                      height: displayHeight(context) * 0.07,
-                      child: Container(
-                          decoration:
-                              BoxDecoration(color: HexColor("#e3e3e3e3")),
-                          child: Column(
-                            children: [
-                              Row(
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      // Text("Total Rp 1.000.000",
-                                      //     style: TextStyle(
-                                      //         color: Colors.grey,
-                                      //         fontSize: displayHeight(context) *
-                                      //             0.025)),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: <Widget>[
-                                          Padding(
-                                              padding: EdgeInsets.fromLTRB(
-                                                  10, 0, 0, 0),
-                                              child: Card(
-                                                child: Row(
-                                                  children: [
-                                                    GestureDetector(
-                                                        onTap: () {
-                                                          updateCount(-1);
-                                                        },
-                                                        child: Container(
-                                                            width: 50.0,
-                                                            child: Center(
-                                                                child: Text(
-                                                              '-  ',
-                                                              style: TextStyle(
-                                                                  fontSize:
-                                                                      25.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  color: Colors
-                                                                      .blue,
-                                                                  decoration:
-                                                                      TextDecoration
-                                                                          .none),
-                                                            )))),
-                                                    Container(
-                                                      child: Center(
-                                                          child: Text(
-                                                        '$count',
-                                                        style: TextStyle(
-                                                            fontSize: 20.0,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            color: Colors.blue,
-                                                            decoration:
-                                                                TextDecoration
-                                                                    .none),
-                                                      )),
-                                                    ),
-                                                    GestureDetector(
-                                                        onTap: () {
-                                                          updateCount(1);
-                                                        },
-                                                        child: Container(
-                                                            width: 50.0,
-                                                            child: Center(
-                                                                child: Text(
-                                                              '  +',
-                                                              style: TextStyle(
-                                                                  fontSize:
-                                                                      25.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  color: Colors
-                                                                      .blue,
-                                                                  decoration:
-                                                                      TextDecoration
-                                                                          .none),
-                                                            )))),
-                                                  ],
-                                                ),
-                                              )),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                  Spacer(),
-                                  GestureDetector(
-                                      onTap: () {
-                                        if (count > widget.stock) {
-                                          Alert(
-                                            context: context,
-                                            type: AlertType.warning,
-                                            title: "insufficient stock",
-                                            buttons: [
-                                              DialogButton(
-                                                child: Text(
-                                                  "Ok",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 20),
-                                                ),
-                                                onPressed: () =>
-                                                    Navigator.pop(context),
-                                                width: 120,
-                                              )
-                                            ],
-                                          ).show();
-                                        } else {
-                                          decreasingkoperasiValue(widget.id);
-                                        }
-                                      },
-                                      child: SizedBox(
-                                        height: displayHeight(context) * 0.07,
-                                        width: displayHeight(context) * 0.18,
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              gradient: LinearGradient(
-                                                  begin: Alignment.centerLeft,
-                                                  end: Alignment.centerRight,
-                                                  colors: [
-                                                    HexColor("#305a84"),
-                                                    HexColor("#97c7eb")
-                                                  ]),
-                                              borderRadius: BorderRadius.only(
-                                                bottomLeft: Radius.circular(15),
-                                                topLeft: Radius.circular(15),
-                                              )),
-                                          child: Column(
-                                            children: [
-                                              SizedBox(
-                                                height: displayHeight(context) *
-                                                    0.016,
-                                              ),
-                                              Align(
-                                                  alignment: Alignment.center,
-                                                  child: Column(
-                                                    children: [
-                                                      if (_loading)
-                                                        Text("Proccesing",
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize: displayHeight(
-                                                                        context) *
-                                                                    0.03))
-                                                      else
-                                                        Text("Buy",
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .white,
-                                                                fontSize:
-                                                                    displayHeight(
-                                                                            context) *
-                                                                        0.03)),
-                                                    ],
-                                                  ))
-                                            ],
-                                          ),
-                                        ),
-                                      )),
-                                ],
-                              ),
-                            ],
-                          )),
-                    ),
+            ),
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(25.0),
+                    topRight: Radius.circular(25.0),
                   ),
-                ), //last one
+                ),
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          widget.nameBarang,
+                          style: Theme.of(context).textTheme.display1,
+                        ),
+                        
+                      ],
+                    ),
+                    Text(
+                      "Stock : ${widget.stock}",
+                      style: Theme.of(context).textTheme.title,
+                    ),
+                    SizedBox(
+                      height: displayHeight(context) * 0.05,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        GestureDetector(
+                          onTap: () {
+                            if (_count <= 0) {
+                              Alert(
+                                context: context,
+                                type: AlertType.warning,
+                                title: "Warning",
+                                desc: "Value Cannot Under 0",
+                                buttons: [
+                                  DialogButton(
+                                    child: Text(
+                                      "Ok",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 20),
+                                    ),
+                                    onPressed: () => Navigator.pop(context),
+                                    width: 120,
+                                  )
+                                ],
+                              ).show();
+                            } else {
+                              setState(() {
+                                _count -= 1;
+                              });
+                            }
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(3.0),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(),
+                            ),
+                            child: Icon(Icons.remove),
+                          ),
+                        ),
+                        SizedBox(width: 15.0),
+                        Text("$_count"),
+                        SizedBox(width: 15.0),
+                        GestureDetector(
+                          onTap: () {
+                            if (_count >= widget.stock) {
+                              Alert(
+                                context: context,
+                                title: "Warning",
+                                type: AlertType.warning,
+                                desc:
+                                    "Maximum Input for ${widget.nameBarang} is ${widget.stock}",
+                                buttons: [
+                                  DialogButton(
+                                    child: Text(
+                                      "Ok",
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 20),
+                                    ),
+                                    onPressed: () => Navigator.pop(context),
+                                    width: 120,
+                                  )
+                                ],
+                              ).show();
+                            } else {
+                              setState(() {
+                                _count += 1;
+                              });
+                            }
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(3.0),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(),
+                            ),
+                            child: Icon(Icons.add),
+                          ),
+                        ),
+                        SizedBox(width: displayHeight(context) * 0.2),
+                        Text(
+                          currencyFormatter.format(int.parse(widget.harga)),
+                          style: TextStyle(fontSize: displayHeight(context) * 0.02),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      width: double.infinity,
+                      height: displayHeight(context) * 0.06,
+                      child: RaisedButton(
+                        child: Text(
+                          "Buy",
+                          style: Theme.of(context).textTheme.button.apply(
+                                color: Colors.white,
+                              ),
+                        ),
+                        onPressed: () {
+                          print(_count);
+                          if (_count == 0) {
+                            Alert(
+                              context: context,
+                              type: AlertType.warning,
+                              title: "Warning",
+                              desc: "Value Cannot Be 0",
+                              buttons: [
+                                DialogButton(
+                                  child: Text(
+                                    "Ok",
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 20),
+                                  ),
+                                  onPressed: () => Navigator.pop(context),
+                                  width: 120,
+                                )
+                              ],
+                            ).show();
+                          } else {
+                            decreasingkoperasiValue(widget.id);
+                          }
+                        },
+                        color: Colors.green,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
-            ]),
-          ),
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

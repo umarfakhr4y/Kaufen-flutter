@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:end_project/pages/anggota/tools/toolspage.dart';
 import 'package:flutter/material.dart';
 import 'package:end_project/size_helper.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -46,12 +47,12 @@ class _AnggotaPageState extends State<AnggotaPage> {
 
   @override
   Widget build(BuildContext context) {
-    final _listPage = <Widget>[HomeAnggota(), ProfileAnggota()];
+    final _listPage = <Widget>[HomeAnggota(),ToolsPageAnggota(), ProfileAnggota()];
 
     return Scaffold(
       extendBody: true,
       body: PageView.builder(
-          itemCount: 2,
+          itemCount: 3,
           controller: controller,
           onPageChanged: (page) {
             setState(() {
@@ -93,6 +94,17 @@ class _AnggotaPageState extends State<AnggotaPage> {
                   iconColor: Colors.black,
                   iconActiveColor: HexColor("#305a84"),
                   text: 'Home',
+                  textColor: Colors.black,
+                  backgroundColor: Colors.white,
+                  iconSize: 24,
+                  padding: padding,
+                ),
+                GButton(
+                  gap: gap,
+                  icon: Icons.settings,
+                  iconColor: Colors.black,
+                  iconActiveColor: HexColor("#305a84"),
+                  text: 'Tools',
                   textColor: Colors.black,
                   backgroundColor: Colors.white,
                   iconSize: 24,

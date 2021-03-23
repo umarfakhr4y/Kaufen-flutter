@@ -123,21 +123,14 @@ class _ProfileAnggotaState extends State<ProfileAnggota> {
         ),
         elevation: 0,
         shadowColor: Colors.lightBlue[200],
-        actions: <Widget>[
-          new IconButton(
-            icon: new Icon(Icons.logout),
-            onPressed: () {
-              logoutIni();
-            },
-          ),
-        ],
+        
         leading: new Container(),
       ),
       body: dataLogin == null
           ? Center(
               child: SizedBox(
-                width: 200.0,
-                height: 100.0,
+                // width: 200.0,
+                // height: 100.0,
                 child: Shimmer.fromColors(
                   baseColor: Colors.white,
                   highlightColor: Colors.grey,
@@ -179,7 +172,7 @@ class _ProfileAnggotaState extends State<ProfileAnggota> {
                       else
                         CircleAvatar(
                           backgroundImage: NetworkImage(
-                              'http://coperationv2.herokuapp.com/${dataLogin.success.image}'),
+                              'http://coperationv2.herokuapp.com/img_profile/${dataLogin.success.image}'),
                           radius: displayHeight(context) * 0.08,
                         ),
                       SizedBox(
@@ -222,8 +215,9 @@ class _ProfileAnggotaState extends State<ProfileAnggota> {
                             return EditProfile(
                               nameoper: dataLogin.success.name,
                               emailoper: dataLogin.success.email,
+                              // tgl_lahirr: : dataLogin.success.,
                             );
-                            ;
+                            
                           }));
                         }
                       },

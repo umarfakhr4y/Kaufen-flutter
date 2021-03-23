@@ -111,8 +111,8 @@ class OtherProductListState extends State<OtherProductList> {
         body: dataProduct == null
             ? Center(
                 child: SizedBox(
-                  width: 200.0,
-                  height: 100.0,
+                  // width: 200.0,
+                  // height: 100.0,
                   child: Shimmer.fromColors(
                     baseColor: Colors.white,
                     highlightColor: Colors.grey,
@@ -151,7 +151,7 @@ class OtherProductListState extends State<OtherProductList> {
                           Text(
                             "Deposited Product",
                             style: TextStyle(
-                                fontSize: displayHeight(context) * 0.05,
+                                fontSize: displayHeight(context) * 0.04,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white),
                           )
@@ -193,47 +193,20 @@ class OtherProductListState extends State<OtherProductList> {
                                             ),
                                             child: Column(
                                               children: [
-                                                ListTile(
-                                                  title: Text(
-                                                    'Goods Type',
-                                                  ),
-                                                  subtitle: Text(dataProduct
-                                                      .data[i].jenis),
-                                                ),
-                                                ListTile(
-                                                  title: Text(
-                                                    'Stock',
-                                                  ),
-                                                  subtitle: Text(dataProduct
-                                                      .data[i].stock
-                                                      .toString()),
-                                                ),
-                                                ListTile(
-                                                  title: Text(
-                                                    'Price',
-                                                  ),
-                                                  subtitle: Text(
-                                                      currencyFormatter.format(
-                                                          dataProduct
-                                                              .data[i].harga)),
-                                                ),
-                                                ListTile(
-                                                  title: Text(
-                                                    'Image',
-                                                  ),
-                                                  subtitle: Container(
-                                                    width:
-                                                        displayHeight(context) *
-                                                            0.01,
-                                                    height:
-                                                        displayHeight(context) *
-                                                            0.15,
-                                                    padding:
-                                                        EdgeInsets.all(100),
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(20),
+                                                Stack(
+                                                  fit: StackFit.passthrough,
+                                                  children: [
+                                                    Container(
+                                                      // width: displayHeight(
+                                                      //         context) *
+                                                      //     0.015,
+                                                      height: displayHeight(
+                                                              context) *
+                                                          0.25,
+                                                      padding:
+                                                          EdgeInsets.all(100),
+                                                      decoration: BoxDecoration(
+                                                        
                                                         // color: Colors.lightBlue[100],
                                                         image: new DecorationImage(
                                                             image: new NetworkImage(
@@ -241,16 +214,148 @@ class OtherProductListState extends State<OtherProductList> {
                                                             fit: BoxFit
                                                                 .fitHeight,
                                                             scale: 2),
-                                                        ),
-                                                  ),
+                                                      ),
+                                                    ),
+                                                    Positioned(
+                                                        top: displayHeight(
+                                                                context) *
+                                                            0.015,
+                                                        right: displayHeight(
+                                                                context) *
+                                                            0.015,
+                                                        child: GestureDetector(
+                                                          onTap: () {
+                                                            Navigator.push(
+                                                                context,
+                                                                MaterialPageRoute(
+                                                                    builder:
+                                                                        (context) {
+                                                              return EditImage(
+                                                                  id_oper:
+                                                                      dataProduct
+                                                                          .data[
+                                                                              i]
+                                                                          .id,
+                                                                  imageOld:
+                                                                      dataProduct
+                                                                          .data[
+                                                                              i]
+                                                                          .image);
+                                                            }));
+                                                          },
+                                                          child: Container(
+                                                            decoration:
+                                                                BoxDecoration(
+                                                                  color: Colors.grey,
+                                                              border: Border.all(
+                                                                    color: Colors
+                                                                        .grey),
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          50),
+                                                            ),
+                                                            child: Column(
+                                                              children: [
+                                                                IconButton(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  iconSize:
+                                                                      displayHeight(
+                                                                              context) *
+                                                                          0.03,
+                                                                  icon: Icon(Icons
+                                                                      .image),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        )),
+                                                    Positioned(
+                                                        bottom: displayHeight(
+                                                                context) *
+                                                            0.015,
+                                                        left: displayHeight(
+                                                                context) *
+                                                            0.015,
+                                                        child: Column(
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                          children: [
+                                                            Container(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .all(2),
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                border: Border.all(
+                                                                    color: Colors
+                                                                        .grey),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            5),
+                                                              ),
+                                                              child: Column(
+                                                                children: [
+                                                                  Text(
+                                                                    "Stock : ${dataProduct.data[i].stock.toString()}",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontSize:
+                                                                          displayHeight(context) *
+                                                                              0.02,
+                                                                    ),
+                                                                  )
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            SizedBox(
+                                                              height: displayHeight(
+                                                                      context) *
+                                                                  0.005,
+                                                            ),
+                                                            Container(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .all(2),
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                border: Border.all(
+                                                                    color: Colors
+                                                                        .grey),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            5),
+                                                              ),
+                                                              child: Column(
+                                                                children: [
+                                                                  Text(
+                                                                    currencyFormatter.format(dataProduct
+                                                                        .data[i]
+                                                                        .harga),
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontSize:
+                                                                          displayHeight(context) *
+                                                                              0.02,
+                                                                    ),
+                                                                  )
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        )),
+                                                  ],
                                                 ),
-                                                // ListTile(
-                                                //   title: Text(
-                                                //     'Harga',
-                                                //   ),
-                                                //   subtitle: Text(
-                                                //       dataProduct.data[i].harga),
-                                                // ),
+                                                ListTile(
+                                                  title: Text(
+                                                    'Goods Type',
+                                                  ),
+                                                  subtitle: Text(dataProduct
+                                                      .data[i].jenis),
+                                                ),
+                                                
                                               ],
                                             )),
                                       ),

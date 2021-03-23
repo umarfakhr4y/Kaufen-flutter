@@ -398,7 +398,29 @@ class AddproductState extends State<Addproduct> {
                                               new BorderRadius.circular(20.0)),
                                       onPressed: () {
                                         if (_formKey.currentState.validate()) {
-                                          tambahproduk();
+                                          if (_image == null) {
+                                            Alert(
+                                              context: context,
+                                              type: AlertType.error,
+                                              title: "Failed",
+                                              desc: "Please Input Image",
+                                              buttons: [
+                                                DialogButton(
+                                                  child: Text(
+                                                    "Ok",
+                                                    style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontSize: 20),
+                                                  ),
+                                                  onPressed: () =>
+                                                      Navigator.pop(context),
+                                                  width: 120,
+                                                )
+                                              ],
+                                            ).show();
+                                          } else {
+                                            tambahproduk();
+                                          }
                                         }
                                       },
                                     ),

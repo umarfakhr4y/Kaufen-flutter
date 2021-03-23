@@ -60,12 +60,7 @@ class ProductState extends State<Product> {
           ),
           elevation: 0,
           shadowColor: Colors.lightBlue[200],
-          leading: IconButton(
-              icon: new Icon(Icons.arrow_back, color: Colors.white),
-              //Menangani kejadian saat menu home diklik
-              onPressed: () {
-                Navigator.pop(context);
-              }),
+          leading: new Container(),
           bottom: TabBar(
             tabs: [
               Tab(
@@ -83,8 +78,8 @@ class ProductState extends State<Product> {
                 body: dataKoperasi == null
                     ? Center(
                         child: SizedBox(
-                          width: 200.0,
-                          height: 100.0,
+                          // width: 200.0,
+                          // height: 100.0,
                           child: Shimmer.fromColors(
                             baseColor: Colors.white,
                             highlightColor: Colors.grey,
@@ -176,8 +171,8 @@ class ProductState extends State<Product> {
                 body: dataTitipan == null
                     ? Center(
                         child: SizedBox(
-                          width: 200.0,
-                          height: 100.0,
+                          // width: 200.0,
+                          // height: 100.0,
                           child: Shimmer.fromColors(
                             baseColor: Colors.white,
                             highlightColor: Colors.grey,

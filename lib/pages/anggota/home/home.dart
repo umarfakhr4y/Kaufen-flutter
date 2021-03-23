@@ -1,12 +1,15 @@
 import 'dart:convert';
 import 'dart:ui';
 
+import 'package:end_project/pages/admin/profilePage/model/profilemodel.dart';
+import 'package:end_project/pages/admin/tools/member_page/getdataMember.dart';
 import 'package:end_project/pages/penjual/home/view_model.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:end_project/size_helper.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:json_table/json_table.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import '../../test.dart';
@@ -34,6 +37,7 @@ class _HomeAnggotaState extends State<HomeAnggota> {
     // TODO: implement initState
     super.initState();
     getPinjaman();
+    getDataLogin();
     // getTabungan();
     columns = [
       JsonTableColumn("total", label: "Daftar Hutang (RP)"),
@@ -65,7 +69,71 @@ class _HomeAnggotaState extends State<HomeAnggota> {
         jsonkedua = json.encode(datatabungan.data).toString();
       });
     });
+  }
+  DataLogin dataLogin;
 
+  _onAlertWithStylePressed(context) {
+    // Reusable alert style
+    var alertStyle = AlertStyle(
+        animationType: AnimationType.fromTop,
+        isCloseButton: false,
+        isOverlayTapDismiss: false,
+        descStyle: TextStyle(fontWeight: FontWeight.bold),
+        animationDuration: Duration(milliseconds: 400),
+        alertBorder: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          side: BorderSide(
+            color: Colors.grey,
+          ),
+        ),
+        titleStyle: TextStyle(
+          color: Colors.red,
+        ),
+        constraints: BoxConstraints.expand(width: 300),
+        //First to chars "55" represents transparency of color
+        overlayColor: Color(0x55000000),
+        alertElevation: 0,
+        alertAlignment: Alignment.topCenter);
+
+    // Alert dialog using custom alert style
+    Alert(
+      context: context,
+      style: alertStyle,
+      type: AlertType.info,
+      title: "Warning",
+      desc: "Please Complete Your Profile",
+      buttons: [
+        DialogButton(
+          child: Text(
+            "OK",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => GetDatamember(
+                        nameoper: dataLogin.success.name,
+                        userid_oper: dataLogin.success.id,
+                      )),
+            );
+          },
+          color: Color.fromRGBO(0, 179, 134, 1.0),
+          radius: BorderRadius.circular(0.0),
+        ),
+      ],
+    ).show();
+  }
+
+  void getDataLogin() {
+    UserViewModel().getUser().then((value) {
+      setState(() {
+        dataLogin = value;
+        if (dataLogin.success.data.length <= 0) {
+          _onAlertWithStylePressed(context);
+        }
+      });
+    });
   }
 
   bool toggle = true;
@@ -92,7 +160,7 @@ class _HomeAnggotaState extends State<HomeAnggota> {
           shadowColor: Colors.lightBlue[200],
           leading: new Container(),
         ),
-        body: dataPinjaman == null
+        body: dataPinjaman == null || datatabungan == null
             ? Center(
                 child: SizedBox(
                   // width: 200.0,
@@ -314,8 +382,8 @@ class _HomeAnggotaState extends State<HomeAnggota> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Container(
-                                    width: displayHeight(context) * 0.23,
-                                    height: displayHeight(context) * 0.25,
+                                    width: displayHeight(context) * 0.215,
+                                    // height: displayHeight(context) * 0.25,
                                     decoration: BoxDecoration(
                                       color: Colors.white,
                                       borderRadius: BorderRadius.circular(20),
@@ -351,8 +419,8 @@ class _HomeAnggotaState extends State<HomeAnggota> {
                                     width: displayHeight(context) * 0.02,
                                   ),
                                   Container(
-                                    width: displayHeight(context) * 0.23,
-                                    height: displayHeight(context) * 0.25,
+                                    width: displayHeight(context) * 0.215,
+                                    // height: displayHeight(context) * 0.25,
 
                                     // height: displayHeight(context) * 0.25,
 

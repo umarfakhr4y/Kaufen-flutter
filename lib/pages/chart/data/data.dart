@@ -47,7 +47,43 @@ class BarData {
   static List<Data> barData = [
     Data(
       id: 0,
+      name: 'Sun',
+      y: 10,
+      color: Color(0xff19bfff),
+    ),
+    Data(
+      id: 0,
       name: 'Mon',
+      y: 15,
+      color: Color(0xff19bfff),
+    ),
+    Data(
+      id: 0,
+      name: 'Tue',
+      y: 13,
+      color: Color(0xff19bfff),
+    ),
+    Data(
+      id: 0,
+      name: 'Wed',
+      y: 15,
+      color: Color(0xff19bfff),
+    ),
+    Data(
+      id: 0,
+      name: 'Thu',
+      y: 15,
+      color: Color(0xff19bfff),
+    ),
+    Data(
+      id: 0,
+      name: 'Fri',
+      y: 15,
+      color: Color(0xff19bfff),
+    ),
+    Data(
+      id: 0,
+      name: 'Sat',
       y: 15,
       color: Color(0xff19bfff),
     ),

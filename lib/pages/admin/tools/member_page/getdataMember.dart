@@ -1,3 +1,4 @@
+import 'package:end_project/auth/auth.dart';
 import 'package:end_project/pages/admin/profilePage/botNavBar.dart';
 import 'package:flutter/material.dart';
 import 'package:end_project/size_helper.dart';
@@ -65,7 +66,7 @@ class GetDatamemberState extends State<GetDatamember> {
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => AdminPage()),
+                    MaterialPageRoute(builder: (context) => GetRole()),
                     (Route<dynamic> route) => false,
                   );
                   // Navigator.pop(context);

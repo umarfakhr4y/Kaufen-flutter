@@ -74,6 +74,7 @@ class Success {
 
 class Datum {
     Datum({
+        this.id,
         this.name,
         this.alamat,
         this.noTelp,
@@ -83,6 +84,7 @@ class Datum {
         this.updatedAt,
     });
 
+    int id;
     String name;
     String alamat;
     String noTelp;
@@ -92,6 +94,7 @@ class Datum {
     DateTime updatedAt;
 
     factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+        id: json["id"],
         name: json["name"],
         alamat: json["alamat"],
         noTelp: json["no_telp"],
@@ -102,6 +105,7 @@ class Datum {
     );
 
     Map<String, dynamic> toJson() => {
+        "id": id,
         "name": name,
         "alamat": alamat,
         "no_telp": noTelp,

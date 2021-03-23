@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:end_project/pages/penjual/tools/transaksi/allProduct/Product.dart';
 import 'package:flutter/material.dart';
 import 'package:end_project/size_helper.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -47,7 +48,7 @@ class _Penjualtate extends State<PenjualPage> {
 
   @override
   Widget build(BuildContext context) {
-    final _listPage = <Widget>[HomePenjual(), PenjualToolsPage(), ProfilePenjual()];
+    final _listPage = <Widget>[HomePenjual(), Product(), ProfilePenjual()];
 
     return Scaffold(
       extendBody: true,
@@ -104,7 +105,7 @@ class _Penjualtate extends State<PenjualPage> {
                   icon: Icons.settings,
                   iconColor: Colors.black,
                   iconActiveColor: HexColor("#305a84"),
-                  text: 'Tools',
+                  text: 'Transaksi',
                   textColor: Colors.black,
                   backgroundColor: Colors.white,
                   iconSize: 24,

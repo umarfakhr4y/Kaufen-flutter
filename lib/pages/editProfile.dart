@@ -79,7 +79,7 @@ class EditProfileState extends State<EditProfile> {
     email.text = widget.emailoper;
     alamat.text = widget.alamat;
     no_telp.text = widget.notelp;
-    tgl_lahir.text = DateFormat('dd-MM-yyyy').format(widget.tgl_lahirr);
+    // tgl_lahir.text = DateFormat('dd-MM-yyyy').format(widget.tgl_lahirr);
   }
 
   void editProfile() {

@@ -23,7 +23,7 @@ class ProfileAdmin extends StatefulWidget {
 
 class _ProfileAdminState extends State<ProfileAdmin> {
   DataLogin dataLogin;
-  
+
   String namedata;
   bool _isChecked = true;
   var _loading = false;
@@ -116,20 +116,18 @@ class _ProfileAdminState extends State<ProfileAdmin> {
     UserViewModel().getUser().then((value) {
       setState(() {
         dataLogin = value;
+        
       });
     });
   }
 
   void initState() {
     super.initState();
-
     getDataLogin();
   }
 
-  
-
   // getDataname(dataLogin.success.name);
-
+  final snackBar = SnackBar(content: Text('Yay! A SnackBar!'));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -139,7 +137,6 @@ class _ProfileAdminState extends State<ProfileAdmin> {
           "Kaufen",
           style: TextStyle(fontSize: 20),
         ),
-        
         flexibleSpace: Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -154,8 +151,8 @@ class _ProfileAdminState extends State<ProfileAdmin> {
       body: dataLogin == null
           ? Center(
               child: SizedBox(
-                width: 200.0,
-                height: 100.0,
+                // width: 200.0,
+                // height: 100.0,
                 child: Shimmer.fromColors(
                   baseColor: Colors.white,
                   highlightColor: Colors.grey,
@@ -163,7 +160,7 @@ class _ProfileAdminState extends State<ProfileAdmin> {
                     'Loading',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: displayHeight(context) * 0.05,
+                      fontSize: displayHeight(context) * 0.06,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -188,22 +185,18 @@ class _ProfileAdminState extends State<ProfileAdmin> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      if(dataLogin.success.image.contains("img_profile"))
+                      if (dataLogin.success.image.contains("img_profile"))
                         CircleAvatar(
-                        backgroundImage: NetworkImage(
-                            'http://coperationv2.herokuapp.com/${dataLogin.success.image}'),
-                        radius: displayHeight(context) * 0.08,
-                        
-                      )
-                       else 
+                          backgroundImage: NetworkImage(
+                              'http://coperationv2.herokuapp.com/${dataLogin.success.image}'),
+                          radius: displayHeight(context) * 0.08,
+                        )
+                      else
                         CircleAvatar(
-                        backgroundImage: NetworkImage(
-                            'http://coperationv2.herokuapp.com/img_profile/${dataLogin.success.image}'),
-                        radius: displayHeight(context) * 0.08,
-                        
-                      ),
-                      
-                      
+                          backgroundImage: NetworkImage(
+                              'http://coperationv2.herokuapp.com/img_profile/${dataLogin.success.image}'),
+                          radius: displayHeight(context) * 0.08,
+                        ),
                       SizedBox(
                         height: displayHeight(context) * 0.01,
                       ),
@@ -244,7 +237,6 @@ class _ProfileAdminState extends State<ProfileAdmin> {
                             return LoadingEdit(
                               nameoper: dataLogin.success.name,
                               emailoper: dataLogin.success.email,
-                              
                             );
                             ;
                           }));

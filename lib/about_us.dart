@@ -260,21 +260,6 @@ class _AboutUsState extends State<AboutUs> {
                                               Text("Hasan Munif")
                                             ],
                                           ))),
-                                  ListTile(
-                                      title: Text(
-                                        'Back end Developer',
-                                      ),
-                                      subtitle: Padding(
-                                          padding:
-                                              EdgeInsets.fromLTRB(20, 0, 0, 0),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text("Damar Ardian"),
-                                              Text("Akmal Ilham")
-                                            ],
-                                          ))),
                                           ListTile(
                                       title: Text(
                                         'Back end Developer',

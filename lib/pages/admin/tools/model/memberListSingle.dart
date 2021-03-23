@@ -63,7 +63,10 @@ class Loan {
     Loan({
         this.id,
         this.name,
+        this.userId,
+        this.dataId,
         this.total,
+        this.waitingConfirmation,
         this.loanReturn,
         this.createdAt,
         this.updatedAt,
@@ -71,7 +74,10 @@ class Loan {
 
     int id;
     String name;
+    int userId;
+    int dataId;
     int total;
+    dynamic waitingConfirmation;
     DateTime loanReturn;
     DateTime createdAt;
     DateTime updatedAt;
@@ -79,7 +85,10 @@ class Loan {
     factory Loan.fromJson(Map<String, dynamic> json) => Loan(
         id: json["id"],
         name: json["name"],
+        userId: json["user_id"],
+        dataId: json["data_id"],
         total: json["total"],
+        waitingConfirmation: json["waiting_confirmation"],
         loanReturn: DateTime.parse(json["return"]),
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
@@ -88,7 +97,10 @@ class Loan {
     Map<String, dynamic> toJson() => {
         "id": id,
         "name": name,
+        "user_id": userId,
+        "data_id": dataId,
         "total": total,
+        "waiting_confirmation": waitingConfirmation,
         "return": "${loanReturn.year.toString().padLeft(4, '0')}-${loanReturn.month.toString().padLeft(2, '0')}-${loanReturn.day.toString().padLeft(2, '0')}",
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),

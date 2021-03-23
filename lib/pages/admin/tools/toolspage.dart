@@ -66,7 +66,7 @@ class _ToolsPageState extends State<ToolsPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(
-                          height: displayHeight(context) * 0.25,
+                          height: displayHeight(context) * 0.2,
                           width: displayHeight(context) * 0.2,
                           child: GestureDetector(
                             onTap: () {
@@ -111,7 +111,7 @@ class _ToolsPageState extends State<ToolsPage> {
                                         child: Icon(
                                           Icons.add_circle,
                                           color: Colors.white,
-                                          size: displayHeight(context) * 0.11,
+                                          size: displayHeight(context) * 0.08,
                                         ),
                                       ),
                                       Text("Register",
@@ -135,7 +135,7 @@ class _ToolsPageState extends State<ToolsPage> {
                           width: displayHeight(context) * 0.03,
                         ),
                         SizedBox(
-                          height: displayHeight(context) * 0.25,
+                          height: displayHeight(context) * 0.2,
                           width: displayHeight(context) * 0.2,
                           child: GestureDetector(
                               onTap: () {
@@ -168,7 +168,7 @@ class _ToolsPageState extends State<ToolsPage> {
                                       child: Icon(
                                         Icons.people_alt_rounded,
                                         color: Colors.white,
-                                        size: displayHeight(context) * 0.11,
+                                        size: displayHeight(context) * 0.08,
                                       ),
                                     ),
                                     Text("Accounts",
@@ -195,7 +195,7 @@ class _ToolsPageState extends State<ToolsPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(
-                          height: displayHeight(context) * 0.25,
+                          height: displayHeight(context) * 0.2,
                           width: displayHeight(context) * 0.2,
                           child: GestureDetector(
                             onTap: () {
@@ -229,7 +229,7 @@ class _ToolsPageState extends State<ToolsPage> {
                                     child: Icon(
                                       Icons.add_circle,
                                       color: Colors.white,
-                                      size: displayHeight(context) * 0.11,
+                                      size: displayHeight(context) * 0.08,
                                     ),
                                   ),
                                   Text("Kaufen",
@@ -253,7 +253,7 @@ class _ToolsPageState extends State<ToolsPage> {
                           width: displayHeight(context) * 0.03,
                         ),
                         SizedBox(
-                          height: displayHeight(context) * 0.25,
+                          height: displayHeight(context) * 0.2,
                           width: displayHeight(context) * 0.2,
                           child: GestureDetector(
                               onTap: () {
@@ -287,7 +287,7 @@ class _ToolsPageState extends State<ToolsPage> {
                                       child: Icon(
                                         Icons.local_drink_rounded,
                                         color: Colors.white,
-                                        size: displayHeight(context) * 0.11,
+                                        size: displayHeight(context) * 0.08,
                                       ),
                                     ),
                                     Text("Deposited ",
@@ -297,6 +297,122 @@ class _ToolsPageState extends State<ToolsPage> {
                                             fontSize: displayHeight(context) *
                                                 0.025)),
                                     Text("Products",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize:
+                                                displayHeight(context) * 0.025))
+                                  ],
+                                ),
+                              )),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: displayHeight(context) * 0.015,
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          height: displayHeight(context) * 0.2,
+                          width: displayHeight(context) * 0.2,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DebtList()),
+                              );
+                            },
+                            child: new Container(
+                              padding: EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  // color: Colors.lightBlue[100],
+                                  image: new DecorationImage(
+                                    image:
+                                        new ExactAssetImage('assets/uang.png'),
+                                    fit: BoxFit.cover,
+                                    colorFilter: ColorFilter.mode(
+                                        Colors.black, BlendMode.hue),
+                                  ),
+                                  border: Border.all(
+                                      width: 2, color: Colors.white)),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.all(10),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: Icon(
+                                      Icons.money,
+                                      color: Colors.white,
+                                      size: displayHeight(context) * 0.08,
+                                    ),
+                                  ),
+                                  Text("Debt",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize:
+                                              displayHeight(context) * 0.025)),
+                                
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: displayHeight(context) * 0.03,
+                        ),
+                        SizedBox(
+                          height: displayHeight(context) * 0.2,
+                          width: displayHeight(context) * 0.2,
+                          child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SavingListAdmin()),
+                                );
+                              },
+                              child: new Container(
+                                padding: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    // color: Colors.lightBlue[100],
+                                    image: new DecorationImage(
+                                      image: new ExactAssetImage(
+                                          'assets/uang.png'),
+                                      fit: BoxFit.cover,
+                                      colorFilter: ColorFilter.mode(
+                                          Colors.black, BlendMode.hue),
+                                    ),
+                                    border: Border.all(
+                                        width: 2, color: Colors.white)),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.all(10),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      child: Icon(
+                                        Icons.attach_money_rounded,
+                                        color: Colors.white,
+                                        size: displayHeight(context) * 0.08,
+                                      ),
+                                    ),
+                                    Text("Saving ",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: displayHeight(context) *
+                                                0.025)),
+                                    Text("List",
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.bold,

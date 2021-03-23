@@ -213,11 +213,37 @@ class SearchProductListState extends State<SearchProductList> {
                                           ),
                                           ListTile(
                                             title: Text(
-                                              'Harga',
+                                              'Price',
                                             ),
                                             subtitle:
                                                 Text(dataProduct.data[i].harga),
-                                          )
+                                          ),
+                                          ListTile(
+                                                  title: Text(
+                                                    'Image',
+                                                  ),
+                                                  onTap: () {},
+                                                  subtitle: Container(
+                                                    width:
+                                                        displayHeight(context) *
+                                                            0.01,
+                                                    height:
+                                                        displayHeight(context) *
+                                                            0.15,
+                                                    padding:
+                                                        EdgeInsets.all(100),
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20),
+                                                        // color: Colors.lightBlue[100],
+                                                        image: new DecorationImage(
+                                                            image: new NetworkImage(
+                                                                'http://coperationv2.herokuapp.com/img/${dataProduct.data[i].image}'),
+                                                            fit: BoxFit.fitHeight,
+                                                            scale: 2),
+                                                        ),
+                                                  ))
                                         ],
                                       )),
                                 ),

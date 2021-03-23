@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'about_us.dart';
 import 'auto_login.dart';
 import 'size_helper.dart';
@@ -30,6 +31,27 @@ class _WelcomeState extends State<Welcome> {
 
   void initState() {
     super.initState();
+  }
+
+  void cekToken() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final String userId = prefs.getString('tokenauto');
+
+    if (userId != null) {
+      setState(() {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AutoLogin()),
+        );
+      });
+      return;
+    } else {
+      print("gaada token");
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Login()),
+      );
+    }
   }
 
   @override
@@ -103,7 +125,6 @@ class _WelcomeState extends State<Welcome> {
                         child: GestureDetector(
                             onTap: () {
                               print("asd");
-                              
                             },
                             child: new Container(
                               padding: EdgeInsets.all(10),
@@ -129,11 +150,7 @@ class _WelcomeState extends State<Welcome> {
                         width: displayHeight(context) * 0.23,
                         child: GestureDetector(
                             onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => AutoLogin()),
-                              );
+                              cekToken();
                             },
                             child: new Container(
                               padding: EdgeInsets.all(10),
