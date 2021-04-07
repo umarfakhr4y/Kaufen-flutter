@@ -115,7 +115,7 @@ class AddOtherproductState extends State<AddOtherproduct> {
           context: context,
           type: AlertType.error,
           title: "Failed",
-          desc: "Failed Adding Deposited Product",
+          desc: "Failed Adding Deposited  ",
           buttons: [
             DialogButton(
               child: Text(

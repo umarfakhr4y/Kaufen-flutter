@@ -66,25 +66,25 @@ class BarData {
     Data(
       id: 0,
       name: 'Wed',
-      y: 15,
+      y: 8,
       color: Color(0xff19bfff),
     ),
     Data(
       id: 0,
       name: 'Thu',
-      y: 15,
+      y: 4,
       color: Color(0xff19bfff),
     ),
     Data(
       id: 0,
       name: 'Fri',
-      y: 15,
+      y: 11,
       color: Color(0xff19bfff),
     ),
     Data(
       id: 0,
       name: 'Sat',
-      y: 15,
+      y: 9,
       color: Color(0xff19bfff),
     ),
   ];
